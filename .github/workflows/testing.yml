@@ -26,4 +26,5 @@ jobs:
         with:
           fetch-depth: 0
       - uses: wagoid/commitlint-github-action@v5
-        configFile: commitlint.config.js
+        with:
+          configFile: commitlint.config.js
