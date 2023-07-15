@@ -19,3 +19,11 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - name: testing
         run: npm run test:e2e:ci
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: wagoid/commitlint-github-action@v5
+        configFile: commitlint.config.js
