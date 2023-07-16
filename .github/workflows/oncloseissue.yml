@@ -1,7 +1,7 @@
 name: Deploy
 run-name: Deploying ${{github.ref_name}}
 on:
-  issue:
+  issues:
     types:
       - closed
 jobs:
