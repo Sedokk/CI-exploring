@@ -11,6 +11,7 @@ const items = [
   "Сходить в магазин",
   "Покормить кота",
   "Отоспаться",
+  "Отоспаться",
 ]
 
 const DEFAULT_STATE = { items, done: {}, text: "" }
