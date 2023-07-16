@@ -3,7 +3,10 @@ run-name: Realising ${{github.ref_name}}
 on:
   push:
     tags:
-      - v\d+
+      - v[0-9]+.[0-9]+.[0-9]+
+permissions:
+  contents: write
+  issues: write
 jobs:
   test:
     uses: ./.github/workflows/onpr.yml
@@ -13,5 +16,19 @@ jobs:
       - uses: actions/checkout@v3
       - name: Create changelog
         id: changelog
-        uses: gandarez/changelog-action@v1.2.0
-      - run: echo "${{steps.changelog.outputs.changelog}}"
+        uses: requarks/changelog-action@v1
+        with:
+          token: ${{github.token}}
+          tag: ${{github.ref_name}}
+      - name: Concatenate changelog
+        run: cat CHANGELOG.md >> .github/ISSUE_TEMPLATE.md
+      - name: Create issue
+        id: issue
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          name: ${{github.ref_name}}
+        with:
+          update_existing: true
+          search_existing: all
+          assignees: ${{github.actor}}
