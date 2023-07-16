@@ -1,0 +1,17 @@
+name: Release
+run-name: Realising ${{github.ref_name}}
+on:
+  push:
+    tags:
+      - v\d+
+jobs:
+  test:
+    uses: ./.github/workflows/onpr.yml
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create changelog
+        id: changelog
+        uses: gandarez/changelog-action@v1.2.0
+      - run: echo "${{steps.changelog.outputs.changelog}}"
