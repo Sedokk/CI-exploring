@@ -6,16 +6,16 @@ on:
       - closed
 jobs:
   deploy:
-  runs-on: ubuntu-latest
-  needs:
-    - test
-  steps:
-    - uses: actions/checkout@v3
-    - run: npm ci
-    - run: npm run build
-    - name: Deploy to GHP
-      uses: crazy-max/ghaction-github-pages@v3
-      with:
-        build_dir: build
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci
+      - run: npm run build
+      - name: Deploy to GHP
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          build_dir: build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
