@@ -1,0 +1,18 @@
+name: PR
+on: pull_request
+jobs:
+  unit-testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci
+      - name: testing
+        run: npm run test:unit:ci
+  integration-testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: testing
+        run: npm run test:e2e:ci
