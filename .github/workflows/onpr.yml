@@ -1,6 +1,11 @@
 name: PR
 run-name: Testing ${{github.event.pull_request.title}}
-on: [pull_request, workflow_call]
+on:
+  pull_request:
+    branches:
+      - master
+      - develop
+  workflow_call:
 jobs:
   unit-testing:
     runs-on: ubuntu-latest
