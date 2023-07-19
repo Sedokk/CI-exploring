@@ -15,3 +15,7 @@ npx husky install
 При пуше с тегом (например v1.2.3) запускаются тесты, создаётся changelog и добавляется в issues
 
 Мой тг - @sedkas
+
+## Create commit by TheodoreTwombly
+
+Данный коммит создан в рамках проверки задания по инфраструктуре.
